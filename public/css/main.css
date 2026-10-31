@@ -1,30 +1,162 @@
-html, body {
-    background-color: lightblue;
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 20px;
+:root {
+    --color-primary: #17324D;
+    --color-primary-hover: #254D70;
+    --color-accent: #DCEAF5;
+    --color-background: #F5F7FA;
+    --color-surface: #FFFFFF;
+    --color-text: #263445;
+    --color-muted: #526274;
+    --color-border: #D8E0E8;
+
+    --shadow-card: 0 4px 16px rgb(23 50 77 / 8%);
+    --radius-card: 12px;
 }
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {scroll-behavior: smooth;}
+
 body {
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.6;
+    color: var(--color-text);
+    background-color: var(--color-background);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+a {
+    text-decoration: none;
+    color: var(--color-primary);
+}
+
+a:focus {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+/*-----------------NAVIGATION BAR-----------------*/
+nav {
+    background-color: var(--color-primary);
+    color: var(--color-surface);
+    padding: 1rem;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+nav a {
+    display: block;
+    color: var(--color-surface);
+    font-weight: bold;
+    transition: color 0.3s;
+    padding: 0.65rem 1rem;
+    border-radius: 6px;
+}
+
+nav a:hover,
+nav a:focus {
+    color: var(--color-primary-hover);
+    background-color: var(--color-accent);
+}
+
+/*-----------------MAIN CONTENT-----------------*/
+main {
+    padding: clamp(1.25rem, 4vw, 2.5rem);
+    margin: 2.5rem auto;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-card);
+    width: min(100% - 2rem, 1100px);
+    min-height: 65vh;
+}
+
+h1, h2, h3 {
+    color: var(--color-primary);
+    line-height: 1.25;
+}
+
+h1 {
+    margin-top: 0;
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+}
+
+h2 {
+    margin-top: 1.5rem;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+}
+
+p {max-width: 75ch;}
+
+main > img.main-logo {
+    margin: 2rem auto 0;
+    width: min(100%, 500px);
+    border-radius: var(--radius-card);
+}
+
+/*-----------------4. PAGE LISTS AND CARDS-----------------*/
+main ul {padding-left: 1.5rem;}
+
+main li {margin-bottom: 0.75rem;}
+
+main li img {
+    width: min(100%, 140px);
+    margin: 1.50rem 0;
+    object-fit: contain;
+}
+
+main li a {overflow-wrap: anywhere;}
+
+main li a:hover {color: var(--color-primary-hover);}
+
+/*-----------------FOOTER-----------------*/
+footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: var(--color-primary);
+    color: var(--color-surface);
+    font-size: 0.9rem;
+}
+
+footer p {margin: 0 auto;}
+
+/*-----------------RESPONSIVE DESIGN-----------------*/
+@media (max-width: 600px) {
     nav {
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        li {
-            display: inline;
-            margin-right: 15px;
-        }
-
-        a {
-            text-decoration: none;
-            color: #333;
-            font-weight: bold;
-
-            &:hover {
-                color: #0066cc;
-            }
-        }
+        padding: 0.75rem;
     }
-}             
+
+    nav ul {
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+
+    nav li,
+    nav a {
+        width: 100%;
+        text-align: center;
+    }
+
+    main {
+        width: calc(100% - 1rem);
+        margin: 1rem auto;
+        padding: 1.25rem;
+    }
+
+    main li img {
+        width: min(100%, 200px);
+    }
+}

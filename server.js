@@ -42,11 +42,7 @@ app.get('/organizations', async (req, res) => {
 
 app.get('/projects', async function (req, res) {
     const projects = await getAllProjects()
-
-    res.render('projects', {
-        title: 'Service Projects',
-        projects
-    })
+    res.render('projects', { title: 'Service Projects', projects });
 })
 
 
@@ -67,11 +63,3 @@ app.listen(PORT, async () => {
         console.error('Error connecting to the database:', error);
     }
 });
-
-getAllProjects()
-    .then(projects => {
-        console.log('Service Projects:', projects)
-    })
-    .catch(error => {
-        console.error('Error retrieving service projects:', error)
-    })

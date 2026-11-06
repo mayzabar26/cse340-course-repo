@@ -36,6 +36,7 @@ VALUES
     'unityserve-logo.png'
 );
 
+
 -- Service Projects Table
 CREATE TABLE service_project (
     service_project_id SERIAL PRIMARY KEY,
@@ -49,6 +50,7 @@ CREATE TABLE service_project (
         FOREIGN KEY (organization_id)
         REFERENCES organization (organization_id)
 );
+
 
 -- Insert data: Service Projects
 INSERT INTO service_project
@@ -113,3 +115,63 @@ VALUES
     (3, 'Community Clean-Up',
      'Organize volunteers to clean public spaces.',
      'Riverside District', '2027-01-15');
+
+
+--Creating category table
+CREATE TABLE category (
+    category_id SERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL
+);
+
+
+-- Creating project_category table
+CREATE TABLE project_category (
+    service_project_id INT NOT NULL,
+    category_id INT NOT NULL,
+
+    PRIMARY KEY (service_project_id, category_id),
+
+    FOREIGN KEY (service_project_id)
+        REFERENCES service_project(service_project_id)
+        ON DELETE CASCADE,
+
+    FOREIGN KEY (category_id)
+        REFERENCES category(category_id)
+        ON DELETE CASCADE
+);
+
+
+--Inserting categories into the category table
+INSERT INTO category (name)
+VALUES 
+	('Education'),
+    ('Environment'),
+    ('Community Development'),
+    ('Health and Wellness');
+
+
+--Associating service projects with categories in the project_category table
+INSERT INTO project_category (service_project_id, category_id)
+VALUES
+    --Community Development (3)
+    (1, 3),
+    (2, 3),
+    (3, 3),
+    (5, 3),
+
+    --Education (1)
+    (4, 1),
+    (8, 1),
+    (13, 1),
+
+    --Environment (2)
+    (6, 2),
+    (7, 2),
+    (9, 2),
+    (10, 2),
+    (15, 2),
+
+    --Health and Wellness (4)
+    (11, 4),
+    (12, 4),
+    (14, 4);
